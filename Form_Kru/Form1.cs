@@ -124,7 +124,7 @@ namespace Form_Kru
                 tabcontrol.Controls.Add(page2);//1
                 tabcontrol.Controls.Add(page3);//2
                 Controls.Add(tabcontrol);
-                Label lbl2 = new Label() { Text = "Esimene" };
+                Label lbl2 = new Label() { Text = "Esimene"};
                 page1.Controls.Add(lbl2);
                 Label lbl3 = new Label() { Text = "Teine" };
                 page2.Controls.Add(lbl3);
