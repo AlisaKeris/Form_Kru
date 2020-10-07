@@ -120,10 +120,17 @@ namespace Form_Kru
                 page1 = new TabPage("Esimene");
                 page2 = new TabPage("Teine");
                 page3 = new TabPage("Kolmas");
-                tabcontrol.Controls.Add(page1);
-                tabcontrol.Controls.Add(page2);
-                tabcontrol.Controls.Add(page3);
+                tabcontrol.Controls.Add(page1);//0
+                tabcontrol.Controls.Add(page2);//1
+                tabcontrol.Controls.Add(page3);//2
                 Controls.Add(tabcontrol);
+                Label lbl2 = new Label() { Text = "Esimene" };
+                page1.Controls.Add(lbl2);
+                Label lbl3 = new Label() { Text = "Teine" };
+                page2.Controls.Add(lbl3);
+                Label lbl4 = new Label() { Text = "Kolmas" };
+                page3.Controls.Add(lbl4);
+
             } else if (e.Node.Text == "MessageBox")
             {
                 MessageBox.Show("MessageBox", "Kõige lihtsam aken");
@@ -135,6 +142,7 @@ namespace Form_Kru
                     if (answer2 == DialogResult.OK)
                     {
                         lbl.Text = text;
+                        Controls.Add(lbl);
                     } 
                 }
             
