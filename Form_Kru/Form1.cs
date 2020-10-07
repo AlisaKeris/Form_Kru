@@ -19,6 +19,9 @@ namespace Form_Kru
         CheckBox boxlbl,boxbtn;
         RadioButton r1, r2;
         TextBox txtbox;
+        PictureBox picture;
+        TabControl tabcontrol;
+        TabPage page1, page2, page3;
         public Form1()
         {
             this.Height= 500;
@@ -33,11 +36,13 @@ namespace Form_Kru
             tn.Nodes.Add(new TreeNode("CheckBox-Button"));
             tn.Nodes.Add(new TreeNode("Radio-Button"));
             tn.Nodes.Add(new TreeNode("TextBox"));
+            tn.Nodes.Add(new TreeNode("PictureBox"));
+            tn.Nodes.Add(new TreeNode("TabControl"));
             tree.Nodes.Add(tn);
             this.Controls.Add(tree);
             btn = new Button();
             btn.Text = "Vajuta siia!";
-            btn.Location = new Point(100, 100);
+            btn.Location = new Point(150, 125);
             btn.Height = 60;
             btn.Width = 150;
             btn.Click += Btn_Click;
@@ -90,10 +95,33 @@ namespace Form_Kru
                 }
                 txtbox = new TextBox();
                 txtbox.Multiline = true;
-                txtbox.Text =" ";
-                txtbox.Size = new Size(200, 200);
-                txtbox.Location = new Point(300, 300);
+                txtbox.Text = text;
+                txtbox.Size = new Size(200, 100);
+                txtbox.Location = new Point(150, 300);
+                this.Controls.Add(txtbox);
 
+            } else if (e.Node.Text == "PictureBox")
+            {
+                picture = new PictureBox();
+                picture.Image = new Bitmap("smile.jpg");
+                picture.Location = new Point(450, 250);
+                picture.Size = new Size(200, 200);
+                picture.SizeMode = PictureBoxSizeMode.Zoom;
+                picture.BorderStyle = BorderStyle.Fixed3D;
+                this.Controls.Add(picture);
+            }else if (e.Node.Text == "TabControl")
+            {
+                tabcontrol = new TabControl();
+                tabcontrol.Location = new Point(450,10);
+                tabcontrol.Size = new Size(200,100);
+                Controls.Add(tabcontrol);
+                page1 = new TabPage("Esimene");
+                page2 = new TabPage("Teine");
+                page3 = new TabPage("Kolmas");
+                tabcontrol.Controls.Add(page1);
+                tabcontrol.Controls.Add(page2);
+                tabcontrol.Controls.Add(page3);
+                Controls.Add(tabcontrol);
             }
         }
 
@@ -101,10 +129,10 @@ namespace Form_Kru
         {
             if (r1.Checked)
             {
-                btn.Location = new Point(150, 100);
+                btn.Location = new Point(150, 125);
             }    else if (r2.Checked)
             {
-                btn.Location = new Point(400,100);
+                btn.Location = new Point(400,125);
             }
         }
 
