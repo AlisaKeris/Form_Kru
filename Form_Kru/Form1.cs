@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -37,6 +38,7 @@ namespace Form_Kru
             tn.Nodes.Add(new TreeNode("Radio-Button"));
             tn.Nodes.Add(new TreeNode("TextBox"));
             tn.Nodes.Add(new TreeNode("PictureBox"));
+            tn.Nodes.Add(new TreeNode("MessageBox"));
             tn.Nodes.Add(new TreeNode("TabControl"));
             tree.Nodes.Add(tn);
             this.Controls.Add(tree);
@@ -122,6 +124,20 @@ namespace Form_Kru
                 tabcontrol.Controls.Add(page2);
                 tabcontrol.Controls.Add(page3);
                 Controls.Add(tabcontrol);
+            } else if (e.Node.Text == "MessageBox")
+            {
+                MessageBox.Show("MessageBox", "Kõige lihtsam aken");
+                var answer = MessageBox.Show("Tahad inputBoxi näha?", "Aken koos nupudega",MessageBoxButtons.YesNo);
+                if(answer == DialogResult.Yes)
+                {
+                    string text= Interaction.InputBox("Sisesta siia mingi tekst", "InputBox", "Mingi tekst");
+                    var answer2 = MessageBox.Show("Tahad salevesta tekst?","Teksti salvestamine", MessageBoxButtons.OKCancel);
+                    if (answer2 == DialogResult.OK)
+                    {
+                        lbl.Text = text;
+                    } 
+                }
+            
             }
         }
 
