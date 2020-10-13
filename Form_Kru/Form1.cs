@@ -23,10 +23,11 @@ namespace Form_Kru
         PictureBox picture;
         TabControl tabcontrol;
         TabPage page1, page2, page3;
+        ListBox lbox;
         public Form1()
         {
             this.Height= 500;
-            this.Width = 700;
+            this.Width = 1000;
             this.Text = "Vorm elementidega";
             tree = new TreeView();
             tree.Dock = DockStyle.Left;
@@ -40,6 +41,7 @@ namespace Form_Kru
             tn.Nodes.Add(new TreeNode("PictureBox"));
             tn.Nodes.Add(new TreeNode("MessageBox"));
             tn.Nodes.Add(new TreeNode("TabControl"));
+            tn.Nodes.Add(new TreeNode("ListBox"));
             tree.Nodes.Add(tn);
             this.Controls.Add(tree);
             btn = new Button();
@@ -59,7 +61,7 @@ namespace Form_Kru
             if (e.Node.Text == "Nupp-Button")
             {
                 this.Controls.Add(btn);
-            } else if (e.Node.Text == "Silt-Button"){
+            } else if (e.Node.Text == "Silt-Button") {
                 this.Controls.Add(lbl);
             } else if (e.Node.Text == "CheckBox-Button")
             {
@@ -77,15 +79,15 @@ namespace Form_Kru
             {
                 r1 = new RadioButton();
                 r1.Text = "Nupp Vasakule";
-                r1.Location = new Point(300,30);
+                r1.Location = new Point(300, 30);
                 r2 = new RadioButton();
                 r2.Text = "Nupp Paremale";
-                r2.Location = new Point(300,70);
+                r2.Location = new Point(300, 70);
                 this.Controls.Add(r1);
                 this.Controls.Add(r2);
                 r1.CheckedChanged += new EventHandler(R1_CheckedChanged);
                 r2.CheckedChanged += new EventHandler(R1_CheckedChanged);
-            } else if (e.Node.Text =="TextBox"){
+            } else if (e.Node.Text == "TextBox") {
                 string text;
                 try
                 {
@@ -111,12 +113,11 @@ namespace Form_Kru
                 picture.SizeMode = PictureBoxSizeMode.Zoom;
                 picture.BorderStyle = BorderStyle.Fixed3D;
                 this.Controls.Add(picture);
-            }else if (e.Node.Text == "TabControl")
+            } else if (e.Node.Text == "TabControl")
             {
                 tabcontrol = new TabControl();
-                tabcontrol.Location = new Point(450,10);
-                tabcontrol.Size = new Size(200,100);
-                Controls.Add(tabcontrol);
+                tabcontrol.Location = new Point(450, 10);
+                tabcontrol.Size = new Size(200, 100);
                 page1 = new TabPage("Esimene");
                 page2 = new TabPage("Teine");
                 page3 = new TabPage("Kolmas");
@@ -124,7 +125,7 @@ namespace Form_Kru
                 tabcontrol.Controls.Add(page2);//1
                 tabcontrol.Controls.Add(page3);//2
                 Controls.Add(tabcontrol);
-                Label lbl2 = new Label() { Text = "Esimene"};
+                Label lbl2 = new Label() { Text = "Esimene" };
                 page1.Controls.Add(lbl2);
                 Label lbl3 = new Label() { Text = "Teine" };
                 page2.Controls.Add(lbl3);
@@ -134,18 +135,30 @@ namespace Form_Kru
             } else if (e.Node.Text == "MessageBox")
             {
                 MessageBox.Show("MessageBox", "Kõige lihtsam aken");
-                var answer = MessageBox.Show("Tahad inputBoxi näha?", "Aken koos nupudega",MessageBoxButtons.YesNo);
-                if(answer == DialogResult.Yes)
+                var answer = MessageBox.Show("Tahad inputBoxi näha?", "Aken koos nupudega", MessageBoxButtons.YesNo);
+                if (answer == DialogResult.Yes)
                 {
-                    string text= Interaction.InputBox("Sisesta siia mingi tekst", "InputBox", "Mingi tekst");
-                    var answer2 = MessageBox.Show("Tahad salevesta tekst?","Teksti salvestamine", MessageBoxButtons.OKCancel);
+                    string text = Interaction.InputBox("Sisesta siia mingi tekst", "InputBox", "Mingi tekst");
+                    var answer2 = MessageBox.Show("Tahad salevesta tekst?", "Teksti salvestamine", MessageBoxButtons.OKCancel);
                     if (answer2 == DialogResult.OK)
                     {
                         lbl.Text = text;
                         Controls.Add(lbl);
-                    } 
+                    }
                 }
-            
+
+            } else if (e.Node.Text == "ListBox")
+            {
+                lbox = new ListBox();
+                string[] C = new string[] { "Kollane", "Punane", "Sinine", "Roheline" };
+                foreach (var item in C)
+                {
+                    lbox.Items.Add(item);
+                }
+                lbox.Location = new Point(700, 10);
+                lbox.Height = C.Length*15;
+                lbox.Width = ;
+                Controls.Add(lbox);
             }
         }
 
