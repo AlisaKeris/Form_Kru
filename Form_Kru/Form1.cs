@@ -174,7 +174,7 @@ namespace Form_Kru
                 dgv.DataSource = dataset;
                 Controls.Add(dgv);
 
-            } else if (e.Node.Text == "menu")
+            } else if (e.Node.Text == "Menu")
             {
                 MainMenu menu = new MainMenu();
                 MenuItem menuitem1 = new MenuItem("File");
@@ -182,15 +182,16 @@ namespace Form_Kru
                 menuitem1.MenuItems.Add("Exit", new EventHandler(menuitem1_Exit));
                 menuitem2.MenuItems.Add("Clear all", new EventHandler(menuitem2_Clear_All));
                 menu.MenuItems.Add(menuitem1);
+                menu.MenuItems.Add(menuitem2);
                 this.Menu = menu;
             }
         }
 
         private void menuitem2_Clear_All(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Kas tahad kustuta kõik?", "Küsimus", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show("Kas tahad kustutada kõik?", "Küsimus", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                this.Controls.Clear();
+                Controls.Clear();
             }
         }
 
