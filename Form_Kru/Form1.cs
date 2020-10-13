@@ -44,6 +44,7 @@ namespace Form_Kru
             tn.Nodes.Add(new TreeNode("TabControl"));
             tn.Nodes.Add(new TreeNode("ListBox"));
             tn.Nodes.Add(new TreeNode("DataGridView"));
+            tn.Nodes.Add(new TreeNode("Menu"));
             tree.Nodes.Add(tn);
             this.Controls.Add(tree);
             btn = new Button();
@@ -173,6 +174,31 @@ namespace Form_Kru
                 dgv.DataSource = dataset;
                 Controls.Add(dgv);
 
+            } else if (e.Node.Text == "menu")
+            {
+                MainMenu menu = new MainMenu();
+                MenuItem menuitem1 = new MenuItem("File");
+                MenuItem menuitem2 = new MenuItem("My");
+                menuitem1.MenuItems.Add("Exit", new EventHandler(menuitem1_Exit));
+                menuitem2.MenuItems.Add("Clear all", new EventHandler(menuitem2_Clear_All));
+                menu.MenuItems.Add(menuitem1);
+                this.Menu = menu;
+            }
+        }
+
+        private void menuitem2_Clear_All(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Kas tahad kustuta kõik?", "Küsimus", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                this.Controls.Clear();
+            }
+        }
+
+        private void menuitem1_Exit(object sender, EventArgs e)
+        {
+            if(MessageBox.Show("Kas oled kindel?","Küsimus",MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                this.Dispose();
             }
         }
 
