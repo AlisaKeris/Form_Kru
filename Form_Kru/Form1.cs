@@ -24,6 +24,7 @@ namespace Form_Kru
         TabControl tabcontrol;
         TabPage page1, page2, page3;
         ListBox lbox;
+        DataSet dataset;
         public Form1()
         {
             this.Height= 500;
@@ -42,6 +43,7 @@ namespace Form_Kru
             tn.Nodes.Add(new TreeNode("MessageBox"));
             tn.Nodes.Add(new TreeNode("TabControl"));
             tn.Nodes.Add(new TreeNode("ListBox"));
+            tn.Nodes.Add(new TreeNode("DataGridView"));
             tree.Nodes.Add(tn);
             this.Controls.Add(tree);
             btn = new Button();
@@ -157,8 +159,20 @@ namespace Form_Kru
                 }
                 lbox.Location = new Point(700, 10);
                 lbox.Height = C.Length*15;
-                lbox.Width = ;
+                lbox.Width = C[3].Length*10;
                 Controls.Add(lbox);
+            } else if(e.Node.Text == "DataGridView") {
+                dataset = new DataSet("Näide");
+                dataset.ReadXml("..//File//excample.xml");
+                DataGridView dgv = new DataGridView();
+                dgv.Location = new Point(450,125);
+                dgv.Width = 250;
+                dgv.Height = 250;
+                dgv.AutoGenerateColumns = true;
+                dgv.DataMember = "note";
+                dgv.DataSource = dataset;
+                Controls.Add(dgv);
+
             }
         }
 
